@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --white: 0, 0%, 100%;
+    --line-color:0, 0%, 90%;
+    --total-bg: 0, 0%, 98%;
+
+    --dark: 0, 0%, 13%;
+    --light-grey: 0, 0%, 52%;
+    --grey: 240, 13%, 56%;
+    --blue: 248, 75%, 29%;
+    --total-blue:249, 75%, 37%;
+
+    --dark-blue: 248, 75%, 37%;
+    --cream: 223, 26%, 95%;
+  }
+  .btn-transform{
+    animation: buttonDisplay 1s ease-in-out;
+    animation-fill-mode: both;
+  }
+
+  @keyframes buttonDisplay{
+    from{
+      transform:translateY(-150%);
+    }
+    to{
+      transform: none;
+    }
+  }
+}
+
+@layer components{
+  .item-section {
+    @apply mt-8 flex p-4 gap-x-4 bg-cream m-4 flex-row flex-nowrap rounded-[10px]  relative z-10;
+  }
+  .item-type {
+    @apply text-[1.3rem] font-frauncesFont text-grey tracking-widest;
+  }
+  .item-description {
+    @apply font-frauncesFont whitespace-nowrap text-2xl font-semibold;
+  }
+  .item-cost {
+    @apply font-frauncesFont font-normal text-xl;
+  }
+  .add-to-cart-btn{
+    @apply rounded-[10px] mx-4 text-white p-4
+  }
+  .increment-btn{
+    @apply px-2 border-lineColor border-4
+  }
+  .total-section{
+    @apply flex flex-row justify-between items-center pt-4
+  }
+  .total-amount-name{
+    @apply text-grey text-sm font-bold lg:text-base
+  }
+  .total-amount{
+    @apply text-base font-bold text-dark lg:text-lg
+  }
+}
