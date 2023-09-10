@@ -47,7 +47,7 @@ export default function itemsSelected(elementToAppend,items) {
      e.target.previousElementSibling.textContent ++;
      const increQuantity = e.target.previousElementSibling.textContent;
      calculateCost(e,increQuantity);
-     
+     updateTotal();
   }
 
   // items quantity decrement implementation
@@ -60,6 +60,7 @@ export default function itemsSelected(elementToAppend,items) {
     }
     const decreQuantity = e.target.nextElementSibling.textContent;
     calculateCost(e,decreQuantity);
+    updateTotal();
  }
 
     function calculateCost(element, quantity) {
@@ -68,4 +69,36 @@ export default function itemsSelected(elementToAppend,items) {
      let getTotalCost = element.target.parentElement.previousElementSibling;
      getTotalCost.textContent = `$${totalCost}`
     }
+
+    function updateTotal(){
+
+      let total = 0;
+      const getCostElements = document.querySelectorAll("#total-item-cost");
+    
+      getCostElements.forEach(function(costElement){
+
+        let eachElementTotalCost = Number(costElement.textContent.slice(1));
+        total += eachElementTotalCost;
+      } )
+
+      const shippingFees = ((7/100) * total);
+      const totalAmountToPay =  (total + shippingFees);
+
+      
+      updateTotalsOnFooter("#add-items-cost",total);
+      
+      // update shipping fee
+      updateTotalsOnFooter("#shipping-fee",shippingFees);
+
+      // update total amount to pay
+      updateTotalsOnFooter("#total-amount-to-pay",totalAmountToPay)
+      
+      // update checkout button
+      updateTotalsOnFooter("#checkout-btn-amount",totalAmountToPay)
+    }
+    function updateTotalsOnFooter(getId,amount){
+      const element = document.querySelector(getId);
+      element.textContent = `$${amount.toFixed(2)}`
+    }
+    updateTotal();
 }
