@@ -71,6 +71,7 @@ window.addEventListener("popstate", function (e) {
     getbody.innerHTML = createCart();
     const sectionToAddItem = document.getElementById("add-items");
     itemsSelected(sectionToAddItem, cartItems);
+  
   } else {
     getbody.innerHTML = "<h1>Page not found</h1>";
   }
@@ -83,7 +84,42 @@ viewCart.addEventListener("click", function (e) {
   getbody.innerHTML = createCart();
   const sectionToAddItem = document.getElementById("add-items");
   itemsSelected(sectionToAddItem, cartItems);
+  const checkoutBtn = document.getElementById("checkout-btn");
+
+checkoutBtn.addEventListener("click",function(){
+  checkoutFun(checkoutBtn,cancelSuccessNote)
+
+  
+})
+
+
+function cancelSuccessNote(){
+  const note = document.getElementById("checkout-note");
+  const header = document.querySelector("header");
+  header.classList.remove("hidden",)
+  header.classList.add("flex")
+  note.classList.remove("flex");
+  note.classList.add("hidden",);
+  checkoutBtn.classList.remove("bg-grey");
+  checkoutBtn.classList.add("bg-blue");
+}
+
+
+
 
 
 });
 
+function checkoutFun(elem,cancelBtn){
+  const note = document.getElementById("checkout-note");
+  const header = document.querySelector("header");
+  header.classList.remove("flex")
+  header.classList.add("hidden","md:flex")
+  note.classList.remove("hidden");
+  note.classList.add("flex");
+  elem.classList.remove("bg-blue");
+  elem.classList.add("bg-grey");
+  const cancelNote = document.querySelector("#cancel-success-note");
+  cancelNote.addEventListener("click",cancelBtn)
+  
+}

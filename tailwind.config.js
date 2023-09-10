@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config}*/
 module.exports = {
+  purge:["./cat.js","./items.js","./index.js"],
   content: ["./*.{html,js}"],
   theme: {
     colors: {
@@ -12,7 +13,8 @@ module.exports = {
       cream:"hsl(var(--cream))",
       purple:"hsl(var(--total-blue))",
       lineColor:"hsl(var(--line-color))",
-      totalsGrey:"hsl(var(--total-bg))"
+      totalsGrey:"hsl(var(--total-bg))",
+      successColor:"hsl(var(--success))",
     },
     fontFamily: {
       sansFont: "'DM Sans', sans-serif",
