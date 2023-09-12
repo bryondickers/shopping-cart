@@ -3,33 +3,11 @@ import homeScreen from "./home.js";
 import itemsSelected from "./items.js";
 
 
-window.addEventListener("load",async function () {
-  const url = 'https://shoes-collections.p.rapidapi.com/shoes';
-  const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'b25e6a59c7mshc71655c5ef42dbap1d7e70jsn871eb751d758',
-		'X-RapidAPI-Host': 'shoes-collections.p.rapidapi.com'
-	}
-};
-
-
-	const response = await fetch(url, options);
-  if(response.statusText == "OK"){
-    const shoes = await response.text();
-    shoes.slice(0,30);
-    shoes.forEach(shoe =>{
-      console.log(shoe);
-    })
-    
-  }
-	
-})
 
 let getbody = document.body;
-const [header,main] = homeScreen();
+const [header,main,footer] = homeScreen();
 getbody.innerHTML = header;
-getbody.appendChild(main);
+getbody.append(main,footer);
 const cartItems = [];
 
 const items = document.querySelectorAll(".item-section");
@@ -93,7 +71,7 @@ function getItemData(e) {
 window.addEventListener("popstate", function (e) {
   if (location.pathname == "/") {
     getbody.innerHTML = header;
-    getbody.appendChild(main);
+    getbody.append(main,footer);
   } else if (location.pathname == "/cart") {
     getbody.innerHTML = createCart();
     const sectionToAddItem = document.getElementById("add-items");
