@@ -5,9 +5,9 @@ import itemsSelected from "./items.js";
 
 
 let getbody = document.body;
-const [header,main,footer] = homeScreen();
+const [header,main] = homeScreen();
 getbody.innerHTML = header;
-getbody.append(main,footer);
+getbody.appendChild(main);
 const cartItems = [];
 
 const items = document.querySelectorAll(".item-section");
@@ -71,7 +71,7 @@ function getItemData(e) {
 window.addEventListener("popstate", function (e) {
   if (location.pathname == "/") {
     getbody.innerHTML = header;
-    getbody.append(main,footer);
+    getbody.appendChild(main);
   } else if (location.pathname == "/cart") {
     getbody.innerHTML = createCart();
     const sectionToAddItem = document.getElementById("add-items");
